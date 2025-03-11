@@ -20,3 +20,10 @@
 [Eng. Soft Moderna - Requisitos](https://engsoftmoderna.info/cap3.html)
 
 ## Histórias de Usuário
+- Como um Usuário, eu gostaria de registrar um Grupo Familiar com um nome.
+- Como um Usuário, eu gostaria de registrar outros Usuários para o meu Grupo Familiar.
+- Como um usuário, eu gostaria de registrar Contas/Despesas, com dados como: Valor, Data de Vencimento, Usuários Responsáveis, Tipo.
+- Como um Usuário, eu gostaria de vincular Despesas a Usuários Responsáveis e dividir o valor entre eles.
+- Como um Usuário, eu gostaria de ser notificado sobre Despesas a qual estou vinculado.
+- Como um Usuário, eu gostaria de verificar a renda e gasto Total Mensal e Por Usuário do Grupo.
+- Como um Usuário, eu gostaria de configurar certas Despesas para ser repetidas mensalmente.
