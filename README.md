@@ -1,5 +1,8 @@
 # Fábrica de Software 2025/1
 
+## Equipe:
+ - Vladimir de Lima
+
 ## Propostas de Projeto
 
 - Sistema de Gerenciamento de Despesas
@@ -12,3 +15,8 @@
  - Renda e gasto contabilizados de mês em mês
  - Despesas repetidas mensalmente (contas, aluguel) e despesas únicas (Compras, Manutenções)
  - Calculadora simples para rachar contas de restaurante
+
+## Livro Eng Software Moderna
+[Eng. Soft Moderna - Requisitos](https://engsoftmoderna.info/cap3.html)
+
+## Histórias de Usuário
