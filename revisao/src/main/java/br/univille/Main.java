@@ -1,15 +1,25 @@
 package br.univille;
 
-    public class Main {
-        public static void main(String[] args) {
-            System.out.println("Hello world!");
+import br.univille.entity.Cidade;
+import br.univille.entity.Cliente;
+import br.univille.entity.Pokemon;
 
-            Cliente zezinho = new Cliente();
-            zezinho.setNome("zezinho sila");
-            //variável -> é driada e moldada da forma desejada
-            //Sinal = -> reia um referência para o objeto
-            //tipo primitivo - ex int idade = 20
-            Cliente mariazinha = new Cliente();
-            mariazinha.setNome("Mariazinha");
-        }
+public class Main {
+    public static void main(String[] args) {
+        //System.out.println("Hello world!");
+
+        Cidade pallet = new Cidade();
+        pallet.setNome("Pallet");
+        pallet.setEstado("Kanto");
+
+        Pokemon pikachu = new Pokemon("Pikachu");
+
+        Cliente zezinho = new Cliente("Ash");
+        zezinho.setNome("Ash Ketchum");
+        zezinho.setCidade(pallet);
+
+        zezinho.getListaPokemon().add(pikachu);
+
+        System.out.println(zezinho);
     }
+}
