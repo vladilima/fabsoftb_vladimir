@@ -13,12 +13,19 @@ public class Main {
         pallet.setEstado("Kanto");
 
         Pokemon pikachu = new Pokemon("Pikachu");
+        Pokemon porygon = new Pokemon("Porygon");
 
         Cliente zezinho = new Cliente("Ash");
         zezinho.setNome("Ash Ketchum");
         zezinho.setCidade(pallet);
 
         zezinho.getListaPokemon().add(pikachu);
+        zezinho.getListaPokemon().add(porygon);
+
+
+        for (var umPokemon : zezinho.getListaPokemon()) {
+            System.out.println(umPokemon);
+        }
 
         System.out.println(zezinho);
     }
