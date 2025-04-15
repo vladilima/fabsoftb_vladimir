@@ -7,7 +7,7 @@ import br.univille.projfabsoft_despesas.entity.Usuario;
 public interface UsuarioService {
     Usuario save(Usuario usuario);
     List<Usuario> getAll();
-    Usuario getById(Long id);
-    Usuario delete(Long id);
+    Usuario getById(long id);
+    Usuario delete(long id);
 
 }

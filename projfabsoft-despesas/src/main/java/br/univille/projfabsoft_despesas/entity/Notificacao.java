@@ -3,17 +3,17 @@ package br.univille.projfabsoft_despesas.entity;
 import java.time.LocalDate;
 
 public class Notificacao {
-    private Long id;
+    private long id;
     private String mensagem;
     private LocalDate data;
     private Usuario usuario;
     private Despesa despesa;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

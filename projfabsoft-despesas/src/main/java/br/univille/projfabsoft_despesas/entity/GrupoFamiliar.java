@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GrupoFamiliar {
-    private Long id;
+    private long id;
     private String nome;
     private List<Usuario> usuarios = new ArrayList<>();
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

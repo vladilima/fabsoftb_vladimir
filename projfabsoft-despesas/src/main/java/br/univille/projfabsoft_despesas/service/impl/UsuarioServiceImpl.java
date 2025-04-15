@@ -28,7 +28,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario getById(Long id) {
+    public Usuario getById(long id) {
         var retorno = repository.findById(id);
         if(retorno.isPresent())
             return retorno.get();
@@ -36,7 +36,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario delete(Long id) {
+    public Usuario delete(long id) {
         var usuario = getById(id);
         if(usuario != null)
             repository.deleteById(id);

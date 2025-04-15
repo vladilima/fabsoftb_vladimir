@@ -14,7 +14,7 @@ import jakarta.persistence.Id;
 public class Despesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @Column(length = 1000)
     private String descricao;
     private Double valor;
@@ -22,11 +22,11 @@ public class Despesa {
     private List<Usuario> usuariosResponsaveis = new ArrayList<>();
     // TIPO DE DESPESA (CONTA, ALIMENTACAO, LAZER, SAUDE, TRANSPORTE, OUTROS)
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
