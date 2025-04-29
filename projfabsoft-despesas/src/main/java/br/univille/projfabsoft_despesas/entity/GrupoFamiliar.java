@@ -3,10 +3,18 @@ package br.univille.projfabsoft_despesas.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class GrupoFamiliar {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
-    private List<Usuario> usuarios = new ArrayList<>();
+    // private List<Usuario> usuarios = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -24,11 +32,11 @@ public class GrupoFamiliar {
         this.nome = nome;
     }
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
+    // public List<Usuario> getUsuarios() {
+    //     return usuarios;
+    // }
 
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
+    // public void setUsuarios(List<Usuario> usuarios) {
+    //     this.usuarios = usuarios;
+    // }
 }

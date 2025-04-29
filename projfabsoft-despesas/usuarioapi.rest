@@ -6,8 +6,23 @@ POST http://localhost:8080/api/v1/usuarios
 Content-Type: application/json
 
 {
-    "id": 0,
-    "nome": "João",
-    "email": "joao@gmail.com",
-    "renda": 2000
+    "nome": "Sérgio",
+    "email": "sergio@gmail.com",
+    "renda": 1400
 }
+
+
+### API USUARIO - PUT
+PUT http://localhost:8080/api/v1/usuarios/3
+Content-Type: application/json
+
+{
+    "nome": "Sérgio",
+    "email": "sergio@gmail.com",
+    "renda": 1400.0,
+    "despesas": []
+}
+
+
+### API USUARIO - DELETE
+DELETE http://localhost:8080/api/v1/usuarios/2
