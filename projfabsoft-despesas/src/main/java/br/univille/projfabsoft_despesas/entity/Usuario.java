@@ -1,16 +1,10 @@
 package br.univille.projfabsoft_despesas.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Usuario {
@@ -21,9 +15,7 @@ public class Usuario {
     private String nome;
     private String email;
     private Double renda;
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "usuario_id")
-    private List<Despesa> despesas = new ArrayList<>();
+    
 
     public long getId() {
         return id;
@@ -55,13 +47,5 @@ public class Usuario {
 
     public void setRenda(Double renda) {
         this.renda = renda;
-    }
-
-    public List<Despesa> getDespesas() {
-        return despesas;
-    }
-
-    public void setDespesas(List<Despesa> despesas) {
-        this.despesas = despesas;
     }
 }

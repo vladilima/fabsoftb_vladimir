@@ -1,6 +1,8 @@
 package br.univille.projfabsoft_despesas.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -23,8 +26,9 @@ public class Despesa {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataVencimento;
-    // private List<Usuario> usuariosResponsaveis = new ArrayList<>();
-    // TIPO DE DESPESA (CONTA, ALIMENTACAO, LAZER, SAUDE, TRANSPORTE, OUTROS)
+    @ManyToMany
+    private List<Usuario> usuariosResponsaveis = new ArrayList<>();
+    //TIPO DE DESPESA (CONTA, ALIMENTACAO, LAZER, SAUDE, TRANSPORTE, OUTROS)
 
     public long getId() {
         return id;
@@ -58,11 +62,11 @@ public class Despesa {
         this.dataVencimento = dataVencimento;
     }
 
-    // public List<Usuario> getUsuariosResponsaveis() {
-    //     return usuariosResponsaveis;
-    // }
+    public List<Usuario> getUsuariosResponsaveis() {
+        return usuariosResponsaveis;
+    }
 
-    // public void setUsuariosResponsaveis(List<Usuario> usuariosResponsaveis) {
-    //     this.usuariosResponsaveis = usuariosResponsaveis;
-    // }
+    public void setUsuariosResponsaveis(List<Usuario> usuariosResponsaveis) {
+        this.usuariosResponsaveis = usuariosResponsaveis;
+    }
 }

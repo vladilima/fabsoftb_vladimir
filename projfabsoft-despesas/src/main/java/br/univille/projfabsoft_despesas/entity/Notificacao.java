@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Notificacao {
@@ -15,9 +16,10 @@ public class Notificacao {
     private long id;
     private String mensagem;
     private LocalDate data;
-    //private Usuario usuario;
     @ManyToOne
     private Despesa despesa;
+    @OneToOne
+    private Usuario usuario;
 
     public long getId() {
         return id;
@@ -43,19 +45,19 @@ public class Notificacao {
         this.data = data;
     }
 
-    // public Usuario getUsuario() {
-    //     return usuario;
-    // }
-
-    // public void setUsuario(Usuario usuario) {
-    //     this.usuario = usuario;
-    // }
-
     public Despesa getDespesa() {
         return despesa;
     }
 
     public void setDespesa(Despesa despesa) {
         this.despesa = despesa;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
