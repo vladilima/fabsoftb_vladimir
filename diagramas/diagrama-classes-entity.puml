@@ -1,12 +1,12 @@
 @startuml
 package br.univille.projfabsoft_despesas.entity {
     class GrupoFamiliar {
-        - Long id
+        - long id
         - String nome
         - List<Usuario> usuarios
         --
-        + Long getId()
-        + void setId(Long id)
+        + long getId()
+        + void setId(long id)
         + String getNome()
         + void setNome(String nome)
         + List<Usuario> getUsuarios()
@@ -14,57 +14,57 @@ package br.univille.projfabsoft_despesas.entity {
     }
 
     class Usuario {
-        - Long id
+        - long id
         - String nome
+        - String email
         - Double renda
-        - List<Despesa> despesas
         --
-        + Long getId()
-        + void setId(Long id)
+        + long getId()
+        + void setId(long id)
         + String getNome()
         + void setNome(String nome)
+        + String getEmail()
+        + void setEmail(String email)
         + Double getRenda()
         + void setRenda(Double renda)
-        + List<Despesa> getDespesas()
-        + void setDespesas(List<Despesa> despesas)
     }
 
     class Despesa {
-        - Long id
+        - long id
         - String descricao
         - Double valor
-        - LocalDate dataVencimento
+        - Date dataVencimento
         - List<Usuario> usuariosResponsaveis
         --
-        + Long getId()
-        + void setId(Long id)
+        + long getId()
+        + void setId(long id)
         + String getDescricao()
         + void setDescricao(String descricao)
         + Double getValor()
         + void setValor(Double valor)
-        + LocalDate getDataVencimento()
-        + void setDataVencimento(LocalDate dataVencimento)
+        + Date getDataVencimento()
+        + void setDataVencimento(Date dataVencimento)
         + List<Usuario> getUsuariosResponsaveis()
         + void setUsuariosResponsaveis(List<Usuario> usuariosResponsaveis)
     }
 
     class Notificacao {
-        - Long id
+        - long id
         - String mensagem
         - LocalDate data
-        - Usuario usuario
         - Despesa despesa
+        - Usuario usuario
         --
-        + Long getId()
-        + void setId(Long id)
+        + long getId()
+        + void setId(long id)
         + String getMensagem()
         + void setMensagem(String mensagem)
         + LocalDate getData()
         + void setData(LocalDate data)
-        + Usuario getUsuario()
-        + void setUsuario(Usuario usuario)
         + Despesa getDespesa()
         + void setDespesa(Despesa despesa)
+        + Usuario getUsuario()
+        + void setUsuario(Usuario usuario)
     }
 
     GrupoFamiliar "1" *-- "0..*" Usuario
