@@ -8,11 +8,23 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-usuario',
-  imports: [HttpClientModule, CommonModule, FormsModule ],
+  imports: [HttpClientModule, CommonModule, FormsModule],
   templateUrl: './form-usuario.component.html',
   styleUrl: './form-usuario.component.css',
-  providers: [ UsuarioService, Router]
+  providers: [UsuarioService, Router]
 })
 export class FormUsuarioComponent {
+  usuario: Usuario = new Usuario();
 
+  constructor(
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {}
+
+  salvar() {
+    this.usuarioService.saveUsuario(this.usuario)
+      .subscribe(resultado => {
+        this.router.navigate(['usuarios']);
+      });
+  }
 }

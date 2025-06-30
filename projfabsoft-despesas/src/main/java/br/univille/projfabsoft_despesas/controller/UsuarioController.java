@@ -18,22 +18,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/api/v1/usuarios")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService service;
-    
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> getUsuarios(){
+    public ResponseEntity<List<Usuario>> getUsuarios() {
         var listaUsuarios = service.getAll();
 
         return new ResponseEntity<List<Usuario>>(listaUsuarios, HttpStatus.OK);
     }
-
 
     @PostMapping
     public ResponseEntity<Usuario> postUsuario(@RequestBody Usuario usuario) {
@@ -66,6 +63,13 @@ public class UsuarioController {
         }
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")	
+    public ResponseEntity<Usuario> getUsuarioId(@PathVariable Long id){
+        var usuario = service.getById(id);
+
+        return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
     }
 
 }

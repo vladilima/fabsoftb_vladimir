@@ -1,1 +1,28 @@
-<p>form-usuario works!</p>
+<main class="container">
+    <h2>Cliente</h2>
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="txtNome">Nome</label>    
+                <input type="text" 
+                    [(ngModel)]="usuario.nome"
+                    class="form-control"
+                    id="txtNome">
+
+                <label for="txtNome">E-mail</label>    
+                <input type="email" 
+                    [(ngModel)]="usuario.email"
+                    class="form-control"
+                    id="txtNome">
+
+                <label for="txtNome">Renda</label>    
+                <input type="number" 
+                    [(ngModel)]="usuario.renda"
+                    class="form-control"
+                    id="txtNome">
+            </div>
+        </div>
+        <button (click)="salvar()" 
+        class="btn btn-primary">Salvar</button>
+    </div>
+</main>
