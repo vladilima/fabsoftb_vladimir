@@ -19,10 +19,14 @@ export class UsuarioComponent {
   constructor(
     private usuarioService: UsuarioService,
     private router: Router
-  ) {}
+  ) { }
 
   novo() {
     this.router.navigate(['usuarios/novo']);
+  }
+
+  alterar(usuario: Usuario) {
+    this.router.navigate(['usuarios/alterar', usuario.id]);
   }
 
   ngOnInit() {
