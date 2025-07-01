@@ -1,0 +1,24 @@
+<main class="container">
+    <h2>Grupos Familiares</h2>
+
+    <a (click)="novo()" class="btn btn-primary">Cadastrar Grupo Familiar</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let grupoFamiliar of listaGrupos">
+                <td>{{grupoFamiliar.nome}}</td>
+
+                <td>
+                    <a (click)="acessar(grupoFamiliar)" class="btn btn-secondary">Acessar</a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    
+</main>

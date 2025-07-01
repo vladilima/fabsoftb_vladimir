@@ -19,6 +19,7 @@ export class GrupoFamiliarService {
       return this.http.put(this.apiURL + '/' + grupoFamiliar.id, grupoFamiliar);
     }
     return this.http.post(this.apiURL, grupoFamiliar);
+    
   }
 
   getGrupoFamiliarById(id: any) {
