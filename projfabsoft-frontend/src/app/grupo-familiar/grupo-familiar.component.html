@@ -16,7 +16,7 @@
                 <tbody>
                     <tr *ngFor="let umUsuario of grupoFamiliar.usuarios">
                         <td>{{umUsuario.nome}}</td>
-                        <td>{{umUsuario.renda}}</td>
+                        <td>R${{umUsuario.renda}}</td>
 
                         <td>
                             <a (click)="removerUsuario(umUsuario)" class="btn btn-danger">Remover</a>
@@ -39,7 +39,7 @@
                 <tbody>
                     <tr *ngFor="let despesa of grupoFamiliar.despesas">
                         <td>{{despesa.descricao}}</td>
-                        <td>{{despesa.valor}}</td>
+                        <td>R${{despesa.valor}}</td>
                         <td>{{getTime(despesa.dataVencimento)}}</td>
 
                         <td>

@@ -38,7 +38,7 @@
                     <tr *ngFor="let usuario of despesa?.usuariosResponsaveis">
                         <td>{{usuario.nome}}</td>
                         <td>{{usuario.renda}}</td>
-                        <td>{{parteAPagar}}</td>
+                        <td>R${{parteAPagar}}</td>
 
                         <td>
                             <a (click)="removerUsuario(usuario)" class="btn btn-danger">Remover</a>
@@ -67,11 +67,11 @@
                     <h5 class="modal-title">Adicionar Usuário</h5>
                 </div>
                 <div class="modal-body">
-                    Selecione o Usuário que deseja adicionar ao grupo familiar:
+                    Selecione o Usuário que deseja adicionar como responsável da Despesa:
                     <div class="form-group">
                         <select id="txtCliente" [(ngModel)]="usuarioSelecionado" class="form-select"
                             [compareWith]="comparaUsuarios">
-                            <option *ngFor="let umUsuario of grupoFamiliar.usuarios" [ngValue]="umUsuario">{{ umUsuario.nome }}
+                            <option *ngFor="let umUsuario of usuariosDisponiveis()" [ngValue]="umUsuario">{{ umUsuario.nome }}
                             </option>
                         </select>
                     </div>

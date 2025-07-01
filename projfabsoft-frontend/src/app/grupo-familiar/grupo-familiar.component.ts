@@ -40,8 +40,6 @@ export class GrupoFamiliarComponent {
       });
     }
 
-    this.atualizarListaUsuarios();
-
   }
 
 
@@ -102,6 +100,8 @@ export class GrupoFamiliarComponent {
   private userModal!: bootstrap.Modal;
 
   selecionarUsuario() {
+    this.atualizarListaUsuarios();
+
     this.userModal = new bootstrap.Modal(this.userModalElement.nativeElement);
     this.userModal.show();
   }

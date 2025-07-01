@@ -35,8 +35,10 @@ export class DespesaComponent {
       this.grupoFamiliarService.getGrupoFamiliarById(id).subscribe(grupoFamiliar => {
         this.grupoFamiliar = grupoFamiliar;
         this.despesa = this.grupoFamiliar.despesas.find(d => d.id === parseInt(this.activeRouter.snapshot.paramMap.get('despesaId') || '0')) || undefined;
+        this.atualizarParte();
       });
     }
+
   }
 
   getTime(date: any) {
@@ -51,13 +53,11 @@ export class DespesaComponent {
   }
 
 
-  
-
 
   comparaUsuarios(obj1: Usuario, obj2: Usuario): boolean {
     return obj1 && obj2 ? obj1.id === obj2.id : obj1 === obj2;
   }
-  
+
   @ViewChild('userModal') userModalElement!: ElementRef;
   private userModal!: bootstrap.Modal;
 
@@ -79,15 +79,9 @@ export class DespesaComponent {
     this.despesa?.usuariosResponsaveis.push(this.usuarioSelecionado);
     this.usuarioSelecionado = undefined; // Limpa a seleção após adicionar
 
-    if (this.despesa && this.despesa.usuariosResponsaveis) {
-      this.parteAPagar = this.despesa.valor / this.despesa.usuariosResponsaveis.length || 0;
-    } else {
-      this.parteAPagar = 0;
-    }
-
     this.grupoFamiliarService.saveGrupoFamiliar(this.grupoFamiliar)
       .subscribe(resultado => {
-        //this.atualizarListaUsuarios();
+        this.atualizarParte();
         this.userModal.hide();
       });
   }
@@ -97,10 +91,29 @@ export class DespesaComponent {
     if (index !== undefined && index > -1) {
       this.despesa?.usuariosResponsaveis.splice(index, 1);
       this.grupoFamiliarService.saveGrupoFamiliar(this.grupoFamiliar).subscribe(() => {
-        //this.atualizarListaUsuarios();
+        this.atualizarParte();
         console.log('Usuário removido com sucesso');
       });
     }
+  }
+
+  atualizarParte() {
+
+    if (this.despesa && this.despesa.usuariosResponsaveis) {
+      this.parteAPagar = this.despesa.valor / this.despesa.usuariosResponsaveis.length || 0;
+    } else {
+      this.parteAPagar = 0;
+    }
+  }
+
+  usuariosDisponiveis() {
+    let usuariosDisponiveis = [] as Usuario[];
+    // Filtra usuários que já estão na despesa
+    usuariosDisponiveis = this.grupoFamiliar.usuarios.filter(u => {
+      return !this.despesa?.usuariosResponsaveis.some(gu => gu.id === u.id);
+    });
+
+    return usuariosDisponiveis;
   }
 
 }
