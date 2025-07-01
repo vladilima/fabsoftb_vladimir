@@ -3,6 +3,9 @@ package br.univille.projfabsoft_despesas.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +20,8 @@ public class GrupoFamiliar {
     private String nome;
     @OneToMany
     private List<Usuario> usuarios = new ArrayList<>();
-    @OneToMany
+    @OneToMany(mappedBy = "grupoFamiliarID", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Despesa> despesas = new ArrayList<>();
 
     public long getId() {

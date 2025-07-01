@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.univille.projfabsoft_despesas.entity.GrupoFamiliar;
-import br.univille.projfabsoft_despesas.entity.Usuario;
+import br.univille.projfabsoft_despesas.service.DespesaService;
 import br.univille.projfabsoft_despesas.service.GrupoFamiliarService;
 
 @RestController
@@ -24,6 +24,8 @@ public class GrupoFamiliarController {
 
     @Autowired
     private GrupoFamiliarService service;
+    @Autowired
+    private DespesaService despesaService;
 
     @GetMapping
     public ResponseEntity<List<GrupoFamiliar>> getGruposFamiliares() {
@@ -49,9 +51,16 @@ public class GrupoFamiliarController {
         if (grupoFamiliarExistente == null) {
             return ResponseEntity.notFound().build();
         }
-        grupoFamiliar.setId(id);
-        service.save(grupoFamiliar);
-        return new ResponseEntity<>(grupoFamiliar, HttpStatus.OK);
+
+        // Update the contents of the existing list instead of replacing it
+        grupoFamiliarExistente.getDespesas().clear();
+        grupoFamiliarExistente.getDespesas().addAll(grupoFamiliar.getDespesas());
+
+        grupoFamiliarExistente.setNome(grupoFamiliar.getNome());
+        grupoFamiliarExistente.setUsuarios(grupoFamiliar.getUsuarios());
+
+        service.save(grupoFamiliarExistente);
+        return new ResponseEntity<>(grupoFamiliarExistente, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

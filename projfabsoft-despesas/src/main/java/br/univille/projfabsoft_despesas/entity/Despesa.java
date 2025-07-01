@@ -6,12 +6,15 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -28,6 +31,9 @@ public class Despesa {
     private Date dataVencimento;
     @ManyToMany
     private List<Usuario> usuariosResponsaveis = new ArrayList<>();
+    @ManyToOne(optional = false)
+    @JsonBackReference
+    private GrupoFamiliar grupoFamiliarID;
     //TIPO DE DESPESA (CONTA, ALIMENTACAO, LAZER, SAUDE, TRANSPORTE, OUTROS)
 
     public long getId() {
@@ -68,5 +74,13 @@ public class Despesa {
 
     public void setUsuariosResponsaveis(List<Usuario> usuariosResponsaveis) {
         this.usuariosResponsaveis = usuariosResponsaveis;
+    }
+
+    public GrupoFamiliar getGrupoFamiliarID() {
+        return grupoFamiliarID;
+    }
+
+    public void setGrupoFamiliarID(GrupoFamiliar grupoFamiliarID) {
+        this.grupoFamiliarID = grupoFamiliarID;
     }
 }

@@ -1,36 +1,66 @@
 <main class="container">
 
-    <div *ngIf="!grupoFamiliar">
+    <h2>{{grupoFamiliar.nome}}</h2>
+    <div class="card">
+        <div class="card-body">
 
-        <h2>Cadastrar Grupo Familiar</h2>
-        <div class="card">
-            <div class="card-body">
+            <h3>Usuários</h3>
 
-                <label for="txtNome">Nome</label>    
-                <input type="text" 
-                    [(ngModel)]="cadastro.nome"
-                    class="form-control"
-                    id="txtNome">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Renda</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let umUsuario of grupoFamiliar.usuarios">
+                        <td>{{umUsuario.nome}}</td>
+                        <td>{{umUsuario.renda}}</td>
 
+                        <td>
+                            <a (click)="removerUsuario(umUsuario)" class="btn btn-danger">Remover</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Despesas</h3>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Vencimento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let despesa of grupoFamiliar.despesas">
+                        <td>{{despesa.descricao}}</td>
+                        <td>{{despesa.valor}}</td>
+                        <td>{{getTime(despesa.dataVencimento)}}</td>
+
+                        <td>
+                            <!-- <a (click)="detalhar(despesa)" class="btn btn-danger">Detalhes</a> -->
+                            <a (click)="removerDespesa(despesa)" class="btn btn-danger">Remover</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="modal-footer">
+                <a (click)="selecionarUsuario()" class="btn btn-primary">Adicionar Usuário</a>
+                <a (click)="abrirCriacao()" class="btn btn-success">Criar Despesa</a>
+                <a (click)="abrirConfirmacao()" class="btn btn-danger">Excluir Grupo</a>
             </div>
-            <button (click)="salvar()" 
-            class="btn btn-primary">Salvar</button>
         </div>
     </div>
 
-    <div *ngIf="grupoFamiliar">
 
-        <h2>{{grupoFamiliar.nome}}</h2>
-        <div class="card">
-            <div class="card-body">
-                
-                <a (click)="abrirConfirmacao(grupoFamiliar)" class="btn btn-danger">Excluir</a>
-            </div>
-        </div>
-    </div>
-    
-
-    <div class="modal fade" #myModal tabindex="-1" role="dialog">
+    <div class="modal fade" #deleteModal tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -42,6 +72,60 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
                     <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" #userModal tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar Usuário</h5>
+                </div>
+                <div class="modal-body">
+                    Selecione o Usuário que deseja adicionar ao grupo familiar:
+                    <div class="form-group">
+                        <select id="txtCliente" [(ngModel)]="usuarioSelecionado" class="form-select"
+                            [compareWith]="comparaUsuarios">
+                            <option *ngFor="let umUsuario of listaUsuarios" [ngValue]="umUsuario">{{ umUsuario.nome }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="fecharSelecao()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="confirmarSelecao()">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" #despesaCriarModal tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Criar Despesa</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="txtNome">Descrição</label>
+                        <input type="text" [(ngModel)]="despesaRascunho.descricao" class="form-control" id="txtNome">
+
+                        <label for="txtNome">Valor</label>
+                        <input type="number" [(ngModel)]="despesaRascunho.valor" class="form-control" id="txtNome">
+
+                        <label for="txtNome">Data de Vencimento</label>
+                        <input type="date" [(ngModel)]="despesaRascunho.dataVencimento" class="form-control" id="txtNome">
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="cancelarCriacao()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="criarDespesa()">Adicionar</button>
                 </div>
             </div>
         </div>
