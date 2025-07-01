@@ -43,7 +43,7 @@
                         <td>{{getTime(despesa.dataVencimento)}}</td>
 
                         <td>
-                            <!-- <a (click)="detalhar(despesa)" class="btn btn-danger">Detalhes</a> -->
+                            <a (click)="detalhar(despesa)" class="btn btn-warning">Detalhes</a>
                             <a (click)="removerDespesa(despesa)" class="btn btn-danger">Remover</a>
                         </td>
 
@@ -51,7 +51,7 @@
                 </tbody>
             </table>
 
-            <div class="modal-footer">
+            <div class="card-footer">
                 <a (click)="selecionarUsuario()" class="btn btn-primary">Adicionar Usuário</a>
                 <a (click)="abrirCriacao()" class="btn btn-success">Criar Despesa</a>
                 <a (click)="abrirConfirmacao()" class="btn btn-danger">Excluir Grupo</a>

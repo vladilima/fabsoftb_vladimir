@@ -153,6 +153,11 @@ export class GrupoFamiliarComponent {
         this.despesaCriarModal.hide();
       });
   }
+
+
+  detalhar(despesa: Despesa) {
+    this.router.navigate(['grupo-familiar', this.grupoFamiliar.id,'despesa', despesa.id]);
+  }
   
   removerDespesa(despesa: Despesa) {
     this.grupoFamiliar.despesas = this.grupoFamiliar.despesas.filter(d => d.id !== despesa.id);

@@ -1,0 +1,87 @@
+<div class="container">
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <h3>Despesas</h3>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Vencimento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{despesa?.descricao}}</td>
+                        <td>R${{despesa?.valor}}</td>
+                        <td>{{getTime(despesa?.dataVencimento)}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Usuários Responsáveis:</h4>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Renda</th>
+                        <th>Parte a Pagar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of despesa?.usuariosResponsaveis">
+                        <td>{{usuario.nome}}</td>
+                        <td>{{usuario.renda}}</td>
+                        <td>{{parteAPagar}}</td>
+
+                        <td>
+                            <a (click)="removerUsuario(usuario)" class="btn btn-danger">Remover</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+                <a (click)="selecionarUsuario()" class="btn btn-primary">Adicionar Usuário Responsável</a>
+
+        </div>
+        
+
+            <div class="card-footer">
+                <a (click)="voltar()" class="btn btn-secondary">Voltar</a>
+            </div>
+    </div>
+
+    
+
+
+    <div class="modal fade" #userModal tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar Usuário</h5>
+                </div>
+                <div class="modal-body">
+                    Selecione o Usuário que deseja adicionar ao grupo familiar:
+                    <div class="form-group">
+                        <select id="txtCliente" [(ngModel)]="usuarioSelecionado" class="form-select"
+                            [compareWith]="comparaUsuarios">
+                            <option *ngFor="let umUsuario of grupoFamiliar.usuarios" [ngValue]="umUsuario">{{ umUsuario.nome }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="fecharSelecao()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="confirmarSelecao()">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
