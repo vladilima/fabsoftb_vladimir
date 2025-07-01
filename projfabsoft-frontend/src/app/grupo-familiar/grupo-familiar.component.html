@@ -1,0 +1,50 @@
+<main class="container">
+
+    <div *ngIf="!grupoFamiliar">
+
+        <h2>Cadastrar Grupo Familiar</h2>
+        <div class="card">
+            <div class="card-body">
+
+                <label for="txtNome">Nome</label>    
+                <input type="text" 
+                    [(ngModel)]="cadastro.nome"
+                    class="form-control"
+                    id="txtNome">
+
+            </div>
+            <button (click)="salvar()" 
+            class="btn btn-primary">Salvar</button>
+        </div>
+    </div>
+
+    <div *ngIf="grupoFamiliar">
+
+        <h2>{{grupoFamiliar.nome}}</h2>
+        <div class="card">
+            <div class="card-body">
+                
+                <a (click)="abrirConfirmacao(grupoFamiliar)" class="btn btn-danger">Excluir</a>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="modal fade" #myModal tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir Grupo Familiar</h5>
+                </div>
+                <div class="modal-body">
+                    Confirma a exclusão do grupo familiar?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
